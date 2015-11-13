@@ -1,0 +1,96 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		meta(name='description', content='')
+		meta(name='author', content='')
+		title PROJECT X
+		link(href='/css/bootstrap.min.css', rel='stylesheet')
+		link(href='/css/bootstrap-theme.min.css', rel='stylesheet')
+		link(href='/css/style.css', rel='stylesheet')
+		link(rel='stylesheet', href='/css/jquery-ui.css')
+	body(onLoad='Stopwatch.start()')
+		.container
+			.page-header
+				h2 #{emp_name} 
+					small #{emp_email}
+					button#btnLogout.btn.btn-danger(style="margin:0") LOGOUT
+			.time-outer-div
+				div.timeinDiv 
+					h5.timein Time in: #{emp_timein} 
+				.stopwatch
+				div.dateTimein haha
+				div.timeoutDiv
+					button#btnTimeout.btn.btn-primary Time out
+
+		script(src="/js/jquery.js")
+		script(src="/js/jquery-ui.js")
+		script(src="/js/bootstrap.js")
+		script(src="/js/moment.js")			
+		script(type='text/javascript').
+			$(document).ready(function(){
+				//- (function(){
+				//- 	$.ajax({
+				//- 		url: '/timein',
+				//- 		method:
+				//- 	})
+				//- })
+				var Stopwatch = (function() {
+				var s;
+				return {
+					settings: {
+						stop: 0,
+						sw: document.querySelectorAll(".stopwatch")[0],
+						results: document.querySelectorAll(".results")[0],
+						secs: 0,
+						mins: 0,
+						hrs: 0,
+						i: 1,
+						times: ["00:00:00"],
+						clearButton: "<a href=\"#\" class=\"button\" onClick=\"Stopwatch.clear();\">Clear</a>"
+					},
+					init: function() {
+						s = this.settings;
+						setInterval(this.timer, 1000);
+					},
+					clear: function() {
+						s.i = 1,
+						s.times = ["00:00:00"],
+						s.results.innerHTML = s.clearButton;
+					},
+					restart: function() {
+						s.secs = 0,
+						s.mins = 0,
+						s.hrs = 0;
+						this.start();
+					},
+					start: function() {
+						s.stop = 0;
+					},
+					stop: function() {
+						s.stop = 1;
+					},
+					timer: function() {
+						if (s.stop === 0) {
+							if (s.secs === 60) {
+								s.mins++;
+								s.secs = 0;
+							}
+							if (s.mins === 60) {
+								s.hrs++;
+								s.mins = 0;
+							}
+							s.sw.innerHTML = ("0" + s.hrs).slice(-2) + ":"
+								 						 + ("0" + s.mins).slice(-2) + ":"
+													 	 + ("0" + s.secs).slice(-2);
+							s.secs++;
+						}
+					}
+				};
+			})();
+			Stopwatch.init();
+
+			});
+

@@ -1,0 +1,260 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title PROJECT X
+    // Bootstrap core CSS
+    link(href='/css/bootstrap.min.css', rel='stylesheet')
+    // Bootstrap theme
+    link(href='/css/bootstrap-theme.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='/css/jquery-ui.css')
+  body(role='document')
+    .container.theme-showcase(role='main')
+      .row
+        button.btn.btn-info(type='submit', data-toggle='modal', data-target='#admin') Admin Login
+        button.btn.btn-info(type='submit', data-toggle='modal', data-target='#emp_login') Employee Login
+      .row
+        .page-header
+          h1(align='center') Project X
+      #clock.clock
+      .row
+        .col-md-3
+        .col-md-6
+        #employee_timein
+          form.form-horizontal(name='timein', action='/timein', method='post')
+            .form-group
+              label.col-sm-4.control-label(for='employee_id') Employee ID
+              .col-sm-4
+                input#employee_id.form-control(type='text', required='', name='employee_id')
+            .form-group
+              label.col-sm-4.control-label(for='employee_password') Employee Password
+              .col-sm-4
+                input#employee_password.form-control(type='password', required='', name='employee_password')
+                center
+                  button#timein.btn.btn-success(type='submit', value='timein', onclick='return false;') TIME IN
+                  button#timeout.btn.btn-success(type='submit', value='timeout', onclick='return false;') TIME OUT
+        .col-md-3
+      .page-header
+      #admin.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+        .modal-dialog(role='document')
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+              h4#myModalLabel.modal-title(align='center') Admin Login
+            form.form-horizontal
+              .modal-body
+                .form-group
+                  label.col-sm-5.control-label(for='adminName') ADMIN ID: 
+                  .col-sm-7
+                    input#adminName.form-control(type='text', required='')
+                .form-group
+                  label.col-sm-5.control-label(for='adminCode') ADMIN PASSWORD: 
+                  .col-sm-7
+                    input#adminCode.form-control(type='password', required='')
+              .modal-footer
+                center
+                  button#adminSignIn.btn.btn-something(type='submit') Log In
+    #this_result
+      .col-md-3
+    .page-header
+      #employee_login.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+        .modal-dialog(role='document')
+          .modal-content
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+              h4#myModalLabel.modal-title(align='center') Employee Log in
+            form.form-horizontal
+              .modal-body
+                .form-group
+                  label.col-sm-5.control-label(for='email') Employee Email:
+                  .col-sm-7
+                    input#email.form-control(type='text', required='')
+                .form-group
+                  label.col-sm-5.control-label(for='employee_password') Employee Password: 
+                  .col-sm-7
+                    input#employee_password.form-control(type='password', required='')
+              .modal-footer
+                center
+                  button#adminSignIn.btn.btn-something(type='submit') Log In
+    #this_result
+      // /modal
+    // /container
+    //
+      Bootstrap core JavaScript
+      ==================================================
+    // Placed at the end of the document so the pages load faster
+    script(src='/js/jquery.js')
+    script(src='/js/jquery-ui.js')
+    script(src='/js/bootstrap.js')
+    script(src='/js/moment.js')
+    script(src='/js/a.js')
+    script(type='text/javascript').
+      $(document).ready(function(){
+      $("#timein").click(function(){
+      $.ajax({
+      url :'/timein',
+      data : {
+      "email" : $("#employee_id").val(),
+      "employee_password" : $("#employee_password").val()
+      },
+      method: "POST",
+      dataType: 'json',
+      success: function(result){
+      if(result.success==true){
+      $("#employee_timein").hide();
+      $("#this_result").html('success')
+      .addClass("alert alert-success fade.in");
+      }
+      else
+      $("#this_result").html(result.data)
+      .addClass("alert alert-danger fade.in");
+      }
+      })
+      })
+      $("#timeout").click(function(){
+      $.ajax({
+      url :'/timeout',
+      data : {
+      "email" : $("#employee_id").val()
+      },
+      method: "POST",
+      dataType: 'json',
+      success: function(result){
+      if(result.success==true){
+      $("#employee_timein").hide();
+      $("#this_result").html(result.data)
+      .addClass("alert alert-success fade.in");
+      }
+      else
+      $("#this_result").html(result.data)
+      .addClass("alert alert-danger fade.in");
+      }
+      })
+      })
+      $("#emp_login").click(function(){
+      $.ajax({
+      url :'/timein',
+      data : {
+      "email" : $("#employee_id").val(),
+      "employee_password" : $("#employee_password").val()
+      },
+      method: "POST",
+      dataType: 'json',
+      success: function(result){
+      if(result.success==true){
+      $("#employee_timein").hide();
+      $("#this_result").html('success')
+      .addClass("alert alert-success fade.in");
+      }
+      else
+      $("#this_result").html(result.data)
+      .addClass("alert alert-danger fade.in");
+      }
+      })
+      })
+      function renderAjaxRequest(link,type,target){
+      $.ajax({
+      url : link,
+      datatype: 'json',
+      method : type,
+      success: function(result){
+      }
+      });
+      }
+      function setEmployeeButtonListener(){
+      $(".view-employee").on('click', function(){
+      var email = $(this).parent().parent().find('.email').html();
+      var first_name = $(this).parent().parent().find('.first_name').html();
+      var middle_name = $(this).parent().parent().find('.middle_name').html();
+      var last_name = $(this).parent().parent().find('.last_name').html();
+      var employee_password = $(this).parent().parent().find('.employee_password').html();
+      data ="<table>";
+      data += "<tr><td>Email: </td><td>"+email_add+"</td></tr>";
+      data += "<tr><td>First Name: </td><td>"+first_name+"</td></tr>";
+      data += "<tr><td>Middle Name: </td><td>"+middle_name+"</td></tr>";
+      data += "<tr><td>Last Name: </td><td>"+last_name+"</td></tr>";
+      data += "<tr><td>Password: </td><td>"+employee_password+"</td></tr>";
+      data += "</table>";
+      $("#popup").html(data);
+      $("#popup").dialog({title: "Employee Information"});
+      $("#popup").dialog("open");
+      $.ajax({
+      url : '/timein',
+      method : "POST",
+      dataType : 'json',
+      data : {'email': email},
+      success : function(result){
+      alert(result.data);
+      }
+      });
+      });
+      $(".create_user").on('click', function(){
+      $("#popup").load('/employee/register');
+      $("#popup").dialog("open");
+      });
+      }
+      $.ajax({
+      url :'/list',
+      dataType: 'json',
+      success: function(result){
+      data = "<center> <table border=0><thead><td>Email</td><td>First Name</td><td>Middle Name</td><td>Last Name</td><td>Password</td></thead>";
+      data += "<tbody>";
+      for(i = 0;i<result.data.length;i++){
+      data += "<tr class='employee'><td class='email'>"+ result.data[i].email+ " <td class='first_name'>"+ result.data[i].first_name+"</td>";
+      data += "<td class='middle_name'>"+result.data[i].middle_name+"</td>";
+      data += "<td class='last_name'>"+result.data[i].last_name+"</td>";
+      data += "<td class='employee_password'>"+result.data[i].employee_password+"</td>";
+      data += "<td><input type='button' value='Detail' class='btn btn-primary btn-xs view-employee'></td>";
+      }
+      data +="<tr><td><button id='create_user' class='btn btn-primary btn-sm create_user'>Register Employee</button></td></tr>";
+      data += "</tbody></table></center>";
+      $("#content").html(data);
+      setEmployeeButtonListener();
+      $("#employee").submit(function(){
+      return false;
+      });
+      }
+      });
+      $.ajax({
+      url :'/schedule_list',
+      dataType: 'json',
+      success: function(result){
+      data = "<center> <table border=0><thead><td>Email</td><td>Time In</td><td>Time Out</td></thead>";
+      data += "<tbody>";
+      for(i = 0;i<result.data.length;i++){
+      data += "<tr class='employee'><td class='employee_id'>"+ result.data[i].employee_id+ " <td class='employee_time_in'>"+ result.data[i].employee_time_in+"</td>";
+      data += "<td class='employee_time_out'>"+result.data[i].employee_time_out+"</td>";
+      data += "<td><input type='button' value='Detail' class='btn btn-primary btn-xs view-employee'></td>";
+      }
+      data +="<tr><td><button id='create_user' class='btn btn-primary btn-sm create_user'>Register Employee</button></td></tr>";
+      data += "</tbody></table></center>";
+      $("#content").html(data);
+      setEmployeeButtonListener();
+      $("#employee").submit(function(){
+      return false;
+      });
+      }
+      });
+
+      
+      $('#clock').fitText(1.3);
+      function update() {
+      $('#clock').html(moment().format('DD MMMM YYYY H:mm:ss'));
+      }
+      setInterval(update, 1000);
+      $("#first_name").datepicker();
+      $("#popup").dialog({autoOpen : false,
+      show :{ effect: "blind", duration: 100},
+      modal: true});
+      $("#popup").dialog("moveToTop");
+      $("#employee").submit(function(){
+      return false;
+      });
+      })

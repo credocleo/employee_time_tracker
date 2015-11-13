@@ -1,0 +1,61 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title PROJECT X
+    // Bootstrap core CSS
+    link(href='/css/bootstrap.min.css', rel='stylesheet')
+    // Bootstrap theme
+    link(href='/css/bootstrap-theme.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='/css/jquery-ui.css')
+  body(role='document')
+    .container.theme-showcase(role='main')
+      .row
+        button.btn.btn-info(type='submit', data-toggle='modal', data-target='#employee_login') Log out
+      .row
+        .page-header
+          h1 Change Password #{sulod}
+      .row
+        .col-md-3
+        .col-md-6
+        div(id="employee_timein")
+          form.form-horizontal(name="change_pass", action="/change_pass", method="post")
+            .form-group
+              label.col-sm-4.control-label(for='employee_password') Current Password
+              .col-sm-4
+                input#employee_password.form-control(type='password', required='', name="employee_password")
+            .form-group
+              label.col-sm-4.control-label(for='new_password') New Password
+              .col-sm-4
+                input#new_password.form-control(type='password', required='', name="new_password")
+            .form-group
+              label.col-sm-4.control-label(for='confirm_password') Confirm New Password
+              .col-sm-4
+                input#confirm_password.form-control(type='password', required='', name="confirm_password")
+                center
+                  button.btn.btn-success(id="change_pass", type='submit', value="change_pass") Change Password
+      script(src="/js/jquery2.js")           
+      script(type='text/javascript').
+        $(function () {
+          $("#change_pass").click(function () {
+          var password = $("#new_password").val();
+          var confirmPassword = $("#confirm_password").val();
+          if (password != confirmPassword) {
+          alert("Passwords do not match.");
+          return false;
+          }
+          return true;
+          });
+        });
+
+    script(src="/js/jquery.js")
+    script(src="/js/jquery-ui.js")
+    script(src="/js/bootstrap.js")
+    script(src="/js/moment.js")
+
+    

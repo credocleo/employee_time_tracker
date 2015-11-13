@@ -1,0 +1,16 @@
+    $(function () {
+        $("#submit").click(function () {
+            var password = $("#pass").val();
+            var confirmPassword = $("#confpass").val();
+
+            if (password == "" || confirmPassword == "") {
+                alert("Cannot be empty.");
+            };
+
+            if (password != confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            return true;
+        });
+    });

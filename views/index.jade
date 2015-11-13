@@ -1,0 +1,107 @@
+doctype html
+html(lang="en")
+	head
+		title First Node APP
+		
+		link(href="css/bootstrap.min.css", rel='stylesheet', type="text/css")
+		link(href="css/jquery-ui.min.css", rel='stylesheet', type="text/css")
+		link(href="css/jquery-ui.theme.css", rel='stylesheet', type="text/css")
+	body
+		
+		div(id="content")
+		div(id="popup")
+
+		
+
+
+
+script(src="js/jquery.min.js")
+script(src="js/jquery-ui.min.js")
+script(src="js/bootstrap.min.js")
+
+script(type="text/javascript").
+	$(document).ready(function(){
+
+		function renderAjaxRequest(link,type,target){
+			$.ajax({
+				url : link,
+				datatype: 'json',
+				method : type,
+				success: function(result){
+
+				}
+			});
+		}
+		function setEmployeeButtonListener(){
+			$(".view-employee").on('click', function(){
+				var email_add = $(this).parent().parent().find('.email').html();
+				var first_name = $(this).parent().parent().find('.first_name').html();
+				var middle_name = $(this).parent().parent().find('.middle_name').html();
+				var last_name = $(this).parent().parent().find('.last_name').html();
+				data ="<table>";
+						data += "<tr><td>Email: </td><td>"+email_add+"</td></tr>";
+						data += "<tr><td>First Name: </td><td>"+first_name+"</td></tr>";
+						data += "<tr><td>Middle Name: </td><td>"+middle_name+"</td></tr>";
+						data += "<tr><td>Last Name: </td><td>"+last_name+"</td></tr>";
+						data += "</table>";
+						$("#popup").html(data);
+						$("#popup").dialog({title: "Employee Information"});
+						$("#popup").dialog("open");
+				$.ajax({
+				url : '/timein',
+				method : "POST",
+				dataType : 'json',
+				data : {'email': 'cp@up.edu.ph'},
+				success : function(result){
+					alert(result.data);
+				}
+				});
+				
+			});
+			$(".create_user").on('click', function(){
+				$("#popup").load('/employee/register');
+				$("#popup").dialog("open");
+				
+				
+		});
+
+		}
+		$.ajax({
+			url :'/list',
+			dataType: 'json',
+			success: function(result){
+				
+				data = "<center> <table border=0><thead><td>Email</td><td>First Name</td><td>Middle Name</td><td>Last Name</td></thead>";
+				data += "<tbody>";
+				for(i = 0;i<result.data.length;i++){
+						data += "<tr class='employee'><td class='email'>"+ result.data[i].email+ " <td class='first_name'>"+ result.data[i].first_name+"</td>";
+						data += "<td class='middle_name'>"+result.data[i].middle_name+"</td>";
+						data += "<td class='last_name'>"+result.data[i].last_name+"</td>";
+						data += "<td><input type='button' value='Detail' class='btn btn-primary btn-xs view-employee'></td>";
+
+				}
+				data +="<tr><td><button id='create_user' class='btn btn-primary btn-sm create_user'>Register Employee</button></td></tr>";
+				data += "</tbody></table></center>";
+				$("#content").html(data);
+
+				setEmployeeButtonListener();
+				$("#employee").submit(function(){
+							return false;
+				});
+
+
+		}
+		});
+
+		$("#first_name").datepicker();
+		$("#popup").dialog({autoOpen : false,
+							show :{ effect: "blind", duration: 100},
+							modal: true});
+		$("#popup").dialog("moveToTop");
+		$("#employee").submit(function(){
+							return false;
+		});
+		
+	});
+
+

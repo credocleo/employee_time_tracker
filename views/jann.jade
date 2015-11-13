@@ -1,0 +1,246 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title PROJECT X
+    // Bootstrap core CSS
+    link(href='../public/css/bootstrap.min.css', rel='stylesheet')
+    // Bootstrap theme
+    link(href='../public/css/bootstrap-theme.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='../public/css/jquery-ui.css')
+  body(role='document')
+  .container.theme-showcase(role='main')
+    .page-header
+      h2 ADMIN DASHBOARD
+    .col-md-12
+      .col-md-10
+        .col-xs-12.col-md-12
+          button.btn.btn-success(type='button', data-toggle='modal', data-target='#createEmployee')
+            span.glyphicon.glyphicon-plus(aria-hidden='true')
+            |  Create New Employee
+          button.btn.btn-success(type='button', data-toggle='modal', data-target='#createAdmin')
+            span.glyphicon.glyphicon-plus(aria-hidden='true')
+            |  Create Admin
+      .col-md-2
+        .col-xs-12.col-md-12
+          button.btn.btn-danger(type='button') Log Out
+    .col-md-12
+      .page-header
+        h3
+          center Employee Time Track Report
+      .row
+        .col-xs-12.col-md-4
+          | From:
+          input#datepicker1.form-control(type='text')
+        .col-xs-12.col-md-2
+        .col-xs-12.col-md-4
+          | Until:
+          input#datepicker2.form-control(type='text')
+        .col-xs-12.col-md-2
+          button.btn.btn-info(type='button') Get Report
+      .row
+        .col-md-12
+          h3(align='center')
+            | [Date 1] to [Date 2]
+            .table-responsive
+              table.table.table-bordered
+                tr
+                  th(rowspan='2')
+                    center Name
+                  th(colspan='2')
+                    center [day(number format)]
+                  th(colspan='2')
+                    center [day(number format)]
+                  th(colspan='2')
+                    center [day(number format)]
+                  th(colspan='2')
+                    center [day(number format)]
+                  th(colspan='2')
+                    center [day(number format)]
+                  th(colspan='2')
+                    center [day(number format)]
+                tr
+                  th
+                    center Date
+                  th
+                    center Hours Rendered
+                  th
+                    center Date
+                  th
+                    center Hours Rendered
+                  th
+                    center Date
+                  th
+                    center Hours Rendered
+                  th
+                    center Date
+                  th
+                    center Hours Rendered
+                  th
+                    center Date
+                  th
+                    center Hours Rendered
+                  th
+                    center Date
+                  th
+                    center Hours Rendered
+                tr
+                  td(align='center') [name[i]]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                tr
+                  td(align='center') [name[i]]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                tr
+                  td(align='center') [name[i]]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                tr
+                  td(align='center') [name[i]]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                tr
+                  td(align='center') [name[i]]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                tr
+                  td(align='center') [name[i]]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+                  td(align='center') date[i]
+                  td(align='center') numHours[i]
+    #createEmployee.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+            h4#myModalLabel.modal-title(align='center') Create New Employee
+          form.form-horizontal(name='/create_employee', action='/create_employee', method='post')
+            .modal-body
+              .form-group
+                label.col-sm-5.control-label(for='employee_id') EMPLOYEE ID: 
+                .col-sm-7
+                  input#employee_id.form-control(type='text', required='', name='employee_id')
+              .form-group
+                label.col-sm-5.control-label(for='first_name') FIRST NAME: 
+                .col-sm-7
+                  input#first_name.form-control(type='text', required='', name='first_name')
+              .form-group
+                label.col-sm-5.control-label(for='middle_name') MIDDLE NAME:
+                .col-sm-7
+                  input#middle_name.form-control(type='text', required='', name='middle_name')
+              .form-group
+                label.col-sm-5.control-label(for='last_name') LAST NAME: 
+                .col-sm-7
+                  input#last_name.form-control(type='text', required='', name='last_name')
+              .form-group
+                label.col-sm-5.control-label(for='position') POSITION: 
+                .col-sm-7
+                  input#position.form-control(type='text', required='', name='position')
+            .modal-footer
+              center
+                button.btn.btn-success(type='submit', value='create_employee') Add Employee
+                button.btn.btn-default(type='button', data-dismiss='modal') Close
+    // /modal
+    #createAdmin.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabe2')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+            h4#myModalLabel.modal-title(align='center') Create New Admin
+          form.form-horizontal(name='/create_admin', action='/create_admin', method='post')
+            .modal-body
+              .form-group
+                label.col-sm-5.control-label(for='admin_id') ADMIN ID: 
+                .col-sm-7
+                  input#admin_id.form-control(type='text', required='', name='admin_id')
+              .form-group
+                label.col-sm-5.control-label(for='admin_password') ADMIN PASSWORD: 
+                .col-sm-7
+                  input#admin_password.form-control(type='password', required='', name='admin_password')
+            .modal-footer
+              center
+                button.btn.btn-success(type='submit', value='create_admin') Add Admin
+                button.btn.btn-default(type='button', data-dismiss='modal') Close
+    // /modal
+  // /container
+  script(src='../public/js/jquery.js')
+  script(src='../public/js/jquery-ui.js')
+  script(src='../public/js/bootstrap.js')
+  script.
+    $(function() {
+    $( "#datepicker1" ).datepicker();
+    });
+    $(function() {
+    $( "#datepicker2" ).datepicker();
+    });
+  //
+    Bootstrap core JavaScript
+    ==================================================
+  // Placed at the end of the document so the pages load faster

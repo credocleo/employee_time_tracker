@@ -1,0 +1,17 @@
+div(id="employee_form")
+	form(method="post", action="/save", id="emp")
+		| Email:
+		input(type="text", name="email")
+		| First Name:
+		input(type="text", name="first_name", id="first_name")
+		br
+		| Middle Name:
+		input(type="text", name="middle_name")
+		br
+		| Last Name:
+		input(type="text", name="last_name")
+		br
+		| Password:
+		input(type="text", name="password")
+		br
+		input(type="submit", value="Register Employee",id="regEmp",class="btn btn-primary btn-sm")
